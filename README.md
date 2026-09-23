@@ -1,5 +1,13 @@
 # protidhoni
 
+[![npm version](https://img.shields.io/npm/v/protidhoni.svg)](https://www.npmjs.com/package/protidhoni)
+[![npm downloads](https://img.shields.io/npm/dm/protidhoni.svg)](https://www.npmjs.com/package/protidhoni)
+[![CI](https://github.com/kmtusher97/protidhoni/actions/workflows/ci.yml/badge.svg)](https://github.com/kmtusher97/protidhoni/actions/workflows/ci.yml)
+[![Release](https://github.com/kmtusher97/protidhoni/actions/workflows/release.yml/badge.svg)](https://github.com/kmtusher97/protidhoni/actions/workflows/release.yml)
+[![npm provenance](https://img.shields.io/badge/provenance-signed-brightgreen)](https://docs.npmjs.com/generating-provenance-statements)
+[![types](https://img.shields.io/npm/types/protidhoni.svg)](https://github.com/kmtusher97/protidhoni/blob/main/src/index.ts)
+[![license](https://img.shields.io/npm/l/protidhoni.svg)](https://github.com/kmtusher97/protidhoni/blob/main/LICENSE)
+
 প্রতিধ্বনি (*protidhoni*) — "echo." Redis-backed caching and invalidation
 higher-order functions for Node.js: wrap an async function with read-through
 caching, then invalidate it by exact key, by prefix, or defer invalidation to
