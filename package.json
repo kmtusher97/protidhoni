@@ -37,6 +37,10 @@
   ],
   "author": "kmtusher97",
   "license": "MIT",
+  "packageManager": "pnpm@11.1.2",
+  "engines": {
+    "node": ">=18"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kmtusher97/protidhoni.git"
