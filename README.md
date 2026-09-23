@@ -33,18 +33,18 @@ import { withCache } from 'protidhoni';
 
 const redis = new Redis();
 
-const getUser = withCache(
-  async (id: string) => db.users.findById(id),
+const getComment = withCache(
+  async (id: string) => db.comments.findById(id),
   {
     redis,
-    prefix: 'user',
+    prefix: 'comment',
     ttl: 60, // seconds
     keyBuilder: (id) => id,
   },
 );
 
-await getUser('123'); // MISS: runs the function, caches the result
-await getUser('123'); // HIT: served from Redis
+await getComment('123'); // MISS: runs the function, caches the result
+await getComment('123'); // HIT: served from Redis
 ```
 
 ### `withCacheInvalidation`
@@ -55,13 +55,13 @@ optional re-fetch to re-warm the cache immediately.
 ```ts
 import { withCacheInvalidation } from 'protidhoni';
 
-const updateUser = withCacheInvalidation(
-  async (id: string, patch: Partial<User>) => db.users.update(id, patch),
+const updateComment = withCacheInvalidation(
+  async (id: string, patch: Partial<Comment>) => db.comments.update(id, patch),
   {
     redis,
-    prefix: 'user',
+    prefix: 'comment',
     keyBuilder: (id) => id,
-    refetch: (id) => getUser(id),
+    refetch: (id) => getComment(id),
   },
 );
 ```
@@ -74,9 +74,11 @@ it's safe on a live keyspace).
 ```ts
 import { withCacheInvalidationByPrefix } from 'protidhoni';
 
-const deleteAllUsers = withCacheInvalidationByPrefix(
-  async () => db.users.deleteAll(),
-  { redis, prefix: 'user' },
+// Soft-delete every comment (set deletedAt rather than removing rows), then
+// invalidate the whole comment cache namespace.
+const softDeleteAllComments = withCacheInvalidationByPrefix(
+  async () => db.comments.updateMany({}, { deletedAt: new Date() }),
+  { redis, prefix: 'comment' },
 );
 ```
 
@@ -88,9 +90,9 @@ want to batch/debounce it. `protidhoni` stays queue-library-agnostic; you
 supply the `enqueue` function.
 
 ```ts
-const updateUser = withCacheInvalidation(fn, {
+const updateComment = withCacheInvalidation(fn, {
   redis,
-  prefix: 'user',
+  prefix: 'comment',
   keyBuilder: (id) => id,
   worker: {
     enqueue: async (keys) => myQueue.add('invalidate', { keys }),
@@ -103,8 +105,8 @@ const updateUser = withCacheInvalidation(fn, {
 ```ts
 import { invalidateCacheKeys, invalidateCachePrefixes } from 'protidhoni';
 
-await invalidateCacheKeys(redis, ['user:123', 'user:456']);
-await invalidateCachePrefixes(redis, ['user', 'session']);
+await invalidateCacheKeys(redis, ['comment:123', 'comment:456']);
+await invalidateCachePrefixes(redis, ['comment', 'thread']);
 ```
 
 ## API
