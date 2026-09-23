@@ -1,0 +1,51 @@
+{
+  "name": "protidhoni",
+  "version": "1.0.0",
+  "description": "Redis-backed caching and invalidation higher-order functions for Node.js — wrap an async function with read-through caching, TTLs, prefix-based invalidation, and optional worker-queue-deferred invalidation.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc && tsc-alias",
+    "test": "jest",
+    "test:coverage": "jest --coverage"
+  },
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "ioredis": ">=5"
+  },
+  "devDependencies": {
+    "@types/jest": "30.0.0",
+    "@types/node": "20.19.41",
+    "ioredis": "5.10.1",
+    "jest": "30.2.0",
+    "ts-jest": "29.4.9",
+    "tsc-alias": "1.8.17",
+    "typescript": "5.9.3"
+  },
+  "keywords": [
+    "cache",
+    "redis",
+    "ioredis",
+    "caching",
+    "invalidation",
+    "memoize"
+  ],
+  "author": "kmtusher97",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kmtusher97/protidhoni.git"
+  },
+  "homepage": "https://github.com/kmtusher97/protidhoni#readme",
+  "bugs": {
+    "url": "https://github.com/kmtusher97/protidhoni/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
