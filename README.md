@@ -127,6 +127,35 @@ works.
 - Prefix-based invalidation runs fire-and-forget after the wrapped write
   resolves — it does not block the write's response.
 
+## Development
+
+```sh
+pnpm install
+pnpm run build
+pnpm run test
+```
+
+CI (`.github/workflows/ci.yml`) runs build + tests on every push and PR to
+`main`.
+
+## Releasing
+
+Publishing to npm is handled by `.github/workflows/release.yml`, triggered by
+pushing a `v*.*.*` tag:
+
+```sh
+npm version patch   # or minor / major — updates package.json and creates a git tag
+git push --follow-tags
+```
+
+The workflow builds, tests, verifies the pushed tag matches
+`package.json`'s `version`, then runs `npm publish` with
+[provenance](https://docs.npmjs.com/generating-provenance-statements). It
+authenticates using the `NPM_TOKEN` repository secret (an npm
+[automation token](https://docs.npmjs.com/creating-and-viewing-access-tokens)
+with publish access) — set it once under
+Settings → Secrets and variables → Actions.
+
 ## License
 
 MIT
