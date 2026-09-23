@@ -131,12 +131,14 @@ works.
 
 ```sh
 pnpm install
+pnpm run typecheck
+pnpm run lint
 pnpm run build
 pnpm run test
 ```
 
-CI (`.github/workflows/ci.yml`) runs build + tests on every push and PR to
-`main`.
+CI (`.github/workflows/ci.yml`) runs typecheck, lint, build, and tests on
+every push and PR to `main`.
 
 ## Releasing
 
