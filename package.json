@@ -1,6 +1,6 @@
 {
   "name": "protidhoni",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Redis-backed caching and invalidation higher-order functions for Node.js — wrap an async function with read-through caching, TTLs, prefix-based invalidation, and optional worker-queue-deferred invalidation.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
