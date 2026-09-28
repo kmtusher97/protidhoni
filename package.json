@@ -25,7 +25,7 @@
     "@types/jest": "30.0.0",
     "@types/node": "20.19.41",
     "eslint": "10.11.0",
-    "ioredis": "5.10.1",
+    "ioredis": "6.0.0",
     "jest": "30.2.0",
     "ts-jest": "29.4.9",
     "tsc-alias": "1.8.17",
